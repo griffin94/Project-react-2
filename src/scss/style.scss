@@ -1,0 +1,212 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1000px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  @media (min-width: 700px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  &__logo {
+    font-size: 100px;
+    @media (min-width: 700px) {
+      font-size: 160px;
+    }
+  }
+  &__title {
+    font-size: 32px;
+    margin: 16px 0px;
+    @media (min-width: 700px) {
+      font-size: 46px;
+    }
+  }
+
+  &__description {
+    max-width: 600px;
+  }
+}
+
+.converter {
+  max-width: 600px;
+  margin: 20px auto;
+  @media (min-width: 700px) {
+    margin: 60px auto 20px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 700px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.label {
+  font-size: 14px;
+}
+
+.text-field {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 5px;
+  height: 81px;
+  @media (min-width: 700px) {
+    margin: 0;
+    flex: 0 1 35%;
+  }
+  &__input {
+    height: 40px;
+    border: 1px solid #b7b7b7;
+    border-radius: 3px;
+    padding: 0px 16px;
+    &:focus {
+      outline: 0;
+      border: 2px solid hsl(203, 89%, 53%);
+      box-shadow: 0px 0px 6px hsl(203, 89%, 53%);
+      padding: 0px 15px;
+    }
+    &--error,
+    &--error:focus {
+      border: 2px solid #e4172c;
+      padding: 0px 15px;
+      box-shadow: none;
+    }
+  }
+  &__validation {
+    font-size: 14px;
+    color: #e4172c;
+  }
+}
+
+.drop-down {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 10px;
+  height: 81px;
+  @media (min-width: 700px) {
+    margin: 0;
+    flex: 0 1 20%;
+  }
+  &__select {
+    height: 40px;
+    border: 1px solid #b7b7b7;
+    border-radius: 3px;
+    padding: 0px 16px;
+    &:focus {
+      outline: 0;
+      border: 2px solid hsl(203, 89%, 53%);
+      box-shadow: 0px 0px 6px hsl(203, 89%, 53%);
+      padding: 0px 15px;
+    }
+  }
+}
+
+.button {
+  height: 40px;
+  border: 1px solid hsl(203, 89%, 53%);
+  background-color: hsl(203, 89%, 53%);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: border 0.3s linear, background-color 0.3s linear;
+  &:hover {
+    background-color: #083975;
+    border: 1px solid #083975;
+  }
+  @media (min-width: 700px) {
+    flex: 0 1 35%;
+  }
+}
+
+.result {
+  position: relative;
+  text-align: center;
+  height: 74px;
+  &__header {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+}
+
+$base: #263238;
+$lite: rgb(3, 175, 255);
+$brand: #ff3d00;
+$size: 48px;
+
+.loader {
+  box-sizing: content-box;
+  position: absolute;
+  top: calc(50% - #{$size/2});
+  left: calc(50% - #{$size/2});
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: $lite $lite transparent transparent;
+  animation: rotation 1s linear infinite;
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid;
+    border-color: transparent transparent $brand $brand;
+    width: $size - 8px;
+    height: $size - 8px;
+    border-radius: 50%;
+    animation: rotationBack 0.5s linear infinite;
+    transform-origin: center center;
+  }
+  &:before {
+    width: $size - 16px;
+    height: $size - 16px;
+    border-color: $lite $lite transparent transparent;
+    animation: rotation 1.5s linear infinite;
+  }
+  &--hidden {
+    display: none;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
