@@ -4,7 +4,7 @@ const Converter = ({ setResult }) => {
   const getExchangeRate = async (currencyName) => {
     try {
       const response = await fetch(
-        `http://api.nbp.pl/api/exchangerates/rates/a/${currencyName}/?format=json`
+        `https://api.nbp.pl/api/exchangerates/rates/a/${currencyName}/?format=json`
       );
       const parsedResponse = await response.json();
       return parsedResponse.rates[0].mid;
@@ -26,7 +26,8 @@ const Converter = ({ setResult }) => {
       };
       setResult(result);
     } catch (err) {
-      console.log(err);
+      alert(err);
+      setResult({ isLoading: false });
     }
   };
 
